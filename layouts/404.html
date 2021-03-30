@@ -1,7 +1,3 @@
-{{ define "main"}}
-    <main id="main">
-      <div>
-       <h1 id="title"><a href="{{ "/" | relURL }}">Go Home</a></h1>
-      </div>
-    </main>
+{{ define "hero" }}  
+    {{ partial "hero" (dict "imageUrl" .Params.image "globalImageUrl" .Site.Params.heroimage "title" "Oooops. sidan du sökte kunde inte hittas" "slogan" "")}}
 {{ end }}
