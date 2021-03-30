@@ -1,0 +1,29 @@
+{{ define "hero" }}  
+     {{ partial "hero" (dict "imageUrl" .Params.image "globalImageUrl" .Site.Params.heroimage "title" .Params.title "slogan" .Params.subtitle)}}
+{{ end }}
+
+
+{{ define "main" }}
+    {{ $truncate := default true .Site.Params.truncate }}
+    {{ if .Content }}
+           
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-8 col-lg-7">
+                <div class="row">  
+                    <div>
+                        <h2>
+                            <a href="{{ .RelPermalink }}">{{ .Title | markdownify }}</a>
+                        </h2>
+                        <hr>
+                    </div>
+                    {{ .Content }}
+                </div>
+            </div>
+        </div>
+    </div>        
+
+
+
+    {{ end }}
+{{ end }}

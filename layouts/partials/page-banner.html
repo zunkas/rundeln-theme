@@ -1,0 +1,20 @@
+<section
+  class="pt-75 pb-75 mb-60 img-bg rundeln-header"
+  style="background-image: url('{{ if .imageUrl }}{{ .imageUrl }}{{ else }}{{ .globalImageUrl }}{{ end }}')">
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-12">
+        <div class="banner-content text-mask banner-content-wrapper">
+          <h2 class="text-light"> {{ .title | markdownify }}</h2>
+
+          <!--div class="page-breadcrumb">
+            <nav aria-label="breadcrumb">
+                {{ partial "breadcrumbs.html" . }}
+            </nav>
+          </div-->
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

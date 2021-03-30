@@ -1,0 +1,49 @@
+{{ define "hero" }}
+    {{ partial "page-banner" (dict "imageUrl" .Params.image "globalImageUrl" .Site.Params.heroimage "title" .Params.title "slogan" .Params.subtitle)}}
+{{ end }}
+
+
+{{ define "main" }}
+
+    {{ $truncate := default true .Site.Params.truncate }}
+
+    {{ if .Content }}
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-8 col-lg-7">
+                    <div class="row mb-60">  
+                        <h1>{{ .Title | markdownify }}</h1>
+                        <hr>
+                        {{ .Content }}
+                    </div>
+                </div>
+             </div>
+        </div>
+    
+    {{ end }}
+
+
+    <section class="blog-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-8 col-lg-7">
+                    <div class="row">  
+                        {{ $paginator := .Paginate .Pages }}
+                        {{ range $paginator.Pages }}
+                    
+                            {{ if $truncate }}
+                                {{ .Render "summary" }}
+                            {{ else }}
+                                {{ .Render "content" }}
+                            {{ end }}
+                    
+                        {{ end }}
+                    
+                        {{ partial "paginator" . }}
+                    </div>
+               </div>
+            </div>
+        </div>        
+    </section>   
+
+{{ end }}

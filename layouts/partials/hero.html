@@ -1,0 +1,16 @@
+<section class="hero-section hero-section-2 mb-60 img-bg" style="background-image: url('{{ if .imageUrl }}{{ .imageUrl }}{{ else }}{{ .globalImageUrl }}{{ end }}')">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-xl-8 col-lg-8">
+        <div class="hero-content-wrapper banner-content-wrapper">
+          <h1 class="mb-25 text-light">
+            {{ .title | markdownify }}
+          </h1>
+          <p class="mb-35 text-light">
+           {{ .slogan }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

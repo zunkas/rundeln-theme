@@ -1,0 +1,35 @@
+{{ define "hero" }}
+{{ partial "page-banner" (dict "imageUrl" .Params.image "globalImageUrl" .Site.Params.heroimage "title" .Params.title "slogan" .Params.subtitle)}}
+{{ end }}
+
+
+
+{{ define "main" }}
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-8 col-lg-7">
+                <div class="row">  
+                    <article class="">
+                        <div>
+                            <h1 class="">
+                                <a class="" href="{{ .RelPermalink }}">{{ .Title | markdownify }}</a>
+                            </h1>
+                            {{ partial "post-date" . }}
+                            <div>Lästid: {{ .ReadingTime }} minuter</div>
+                            {{ partial "post-tags" . }}
+                            {{ partial "post-categories" . }}
+                            <hr>
+                        </div>
+
+                        {{ .Content }}
+
+                        {{ partial "translations.html" . }}
+                        {{ partial "related" . }}
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>        
+
+{{ end }}
