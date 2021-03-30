@@ -1,11 +1,34 @@
 <head>
-    <title>{{ .Title }}</title>
+    <title>{{ if .Title }}{{ .Title | markdownify }}-{{ .Site.Params.SEOTitle }}{{ else }}{{ .Site.Params.SEOTitle }}{{ end }}</title>
+
     <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge"    />
-    <meta name="description" content="Rundelns samfällighetsförening" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    
+    {{ if .Params.title }}
+    <meta name="title" content="{{ .Params.title }}" />
+    <meta property="og:title" content="{{ .Params.title }}" />
+    <meta property="twitter:title" content="{{ .Params.title }}" />
+    {{ else }}
+    <meta name="title" content="{{ .Site.Params.title }}" />
+    <meta property="og:title" content="{{ .Site.Params.title }}" />
+    <meta property="twitter:title" content="{{ .Site.Params.title }}" />
+    {{ end }}
+
+    {{ if .Params.description }}
+    <meta name="description" content="{{ .Params.description }}">
+    <meta property="og:description" content="{{ .Params.description }}" />
+    <meta property="twitter:description" content="{{ .Params.description }}" />
+    {{ else }}
+    <meta name="description" content="{{ .Site.Params.description }}">
+    <meta property="og:description" content="{{ .Site.Params.description }}" />
+    <meta property="twitter:description" content="{{ .Site.Params.description }}" />
+    {{ end }}
+        
     <meta name="dc.relation" content="{{ .Site.BaseURL }}" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
+    <link rel="canonical" href="{{ .Permalink }}">
+
     {{ $options := (dict "targetPath" "css/style.css" "outputStyle" "compressed") }}
     {{ $style := resources.Get "sass/main.scss" | toCSS  $options | minify }}
 
