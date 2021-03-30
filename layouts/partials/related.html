@@ -1,11 +1,11 @@
-<footer>
+<div>
     {{ $related := .Site.RegularPages.Related . | first 5 }}
     {{ with $related }}
-        <h4>{{ i18n "related" }}</h4>
+        <h4>Relaterade sidor</h4>
         <ul>
             {{ range . }}
                 <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
             {{ end }}
         </ul>
     {{ end }}
-    </footer>
+</div>
