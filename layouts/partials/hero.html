@@ -1,4 +1,7 @@
-<section class="hero-section hero-section-2 mb-60 img-bg" style="background-image: url('{{ if .imageUrl }}{{ .imageUrl }}{{ else }}{{ .globalImageUrl }}{{ end }}')">
+{{- $rawUrl := .globalImageUrl -}}
+{{- if .imageUrl -}}{{- $rawUrl = .imageUrl -}}{{- end -}}
+{{- $processedUrl := partial "image" $rawUrl -}}
+<section class="hero-section hero-section-2 mb-60 img-bg" style="background-image: url('{{ $processedUrl }}')">
   <div class="container">
     <div class="row align-items-center">
       <div class="col-xl-8 col-lg-8">

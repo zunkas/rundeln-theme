@@ -1,0 +1,9 @@
+{{- $src := . -}}
+{{- $path := strings.TrimPrefix "/" $src -}}
+{{- $img := resources.Get $path -}}
+{{- if $img -}}
+  {{- $webp := $img.Process "webp" -}}
+  {{- $webp.RelPermalink -}}
+{{- else -}}
+  {{- $src -}}
+{{- end -}}

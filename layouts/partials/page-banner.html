@@ -1,6 +1,9 @@
 <section
   class="pt-75 pb-75 mb-60 img-bg rundeln-header"
-  style="background-image: url('{{ if .imageUrl }}{{ .imageUrl }}{{ else }}{{ .globalImageUrl }}{{ end }}')">
+  {{- $rawUrl := .globalImageUrl -}}
+  {{- if .imageUrl -}}{{- $rawUrl = .imageUrl -}}{{- end -}}
+  {{- $processedUrl := partial "image" $rawUrl -}}
+  style="background-image: url('{{ $processedUrl }}')">
   <div class="container">
     <div class="row">
       <div class="col-xl-12">
