@@ -2,7 +2,9 @@
     <div class="mb-40 pt-30 single-blog">
     
         <div class="blog-content">
+            {{ if or (eq .Section "rundeln-runt") (eq .Section "Protokoll") }}
             <span class="date-meta">{{ partial "post-date" . }}</span>
+            {{ end }}
            
             {{ partial "post-title" . }}
            
