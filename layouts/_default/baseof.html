@@ -11,10 +11,35 @@
 
         {{- partial "header.html" . -}}
 
+        {{ with .Site.Params.announcement }}
+          {{ if .enabled }}
+          <div class="announcement-banner announcement-{{ .type | default "info" }}" id="announcement-banner" style="display:none;">
+            <div class="container d-flex align-items-center justify-content-between">
+              <span>{{ .message | markdownify }}</span>
+              <button type="button" class="announcement-close" aria-label="Stäng" onclick="dismissAnnouncement()">
+                <i class="lni lni-close"></i>
+              </button>
+            </div>
+          </div>
+          <script>
+            (function() {
+              var key = 'announcement_dismissed_' + btoa(unescape(encodeURIComponent('{{ .message }}'))).substring(0, 16);
+              if (!localStorage.getItem(key)) {
+                document.getElementById('announcement-banner').style.display = 'block';
+              }
+              window.dismissAnnouncement = function() {
+                document.getElementById('announcement-banner').style.display = 'none';
+                localStorage.setItem(key, '1');
+              };
+            })();
+          </script>
+          {{ end }}
+        {{ end }}
+
         {{ block "hero" .}}
         {{ end }}
-        
-        <main>
+
+        <main id="main-content">
             {{- block "main" . }}{{- end }}
         </main>
 

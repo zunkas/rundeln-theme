@@ -2,6 +2,22 @@
     <div class="mb-40 pt-30 single-blog">
     
         <div class="blog-content">
+            {{ $sectionName := .Section }}
+            {{ $badgeClass := "badge-primary" }}
+            {{ if eq .Section "nyttig-information" }}
+              {{ $sectionName = "Nyttig information" }}
+              {{ $badgeClass = "badge-info" }}
+            {{ else if eq .Section "rundeln-runt" }}
+              {{ $sectionName = "Rundeln runt" }}
+              {{ $badgeClass = "badge-newsletter" }}
+            {{ else if eq .Section "Protokoll" }}
+              {{ $sectionName = "Protokoll" }}
+              {{ $badgeClass = "badge-protocol" }}
+            {{ else if eq .Section "samfalligheten" }}
+              {{ $sectionName = "Samfälligheten" }}
+            {{ end }}
+            <span class="section-badge {{ $badgeClass }}">{{ $sectionName }}</span>
+
             {{ if or (eq .Section "rundeln-runt") (eq .Section "Protokoll") }}
             <span class="date-meta">{{ partial "post-date" . }}</span>
             {{ end }}

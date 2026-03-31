@@ -1,4 +1,4 @@
-{{ define "hero" }}  
+{{ define "hero" }}
      {{ partial "hero" (dict "imageUrl" .Params.image "globalImageUrl" .Site.Params.heroimage "title" .Params.title "slogan" .Params.subtitle)}}
 {{ end }}
 
@@ -10,7 +10,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-xl-8 col-lg-7">
-                <div class="row">  
+                <div class="row">
                     <div>
                         <h2>
                             <a href="{{ .RelPermalink }}">{{ .Title | markdownify }}</a>
@@ -21,9 +21,80 @@
                 </div>
             </div>
         </div>
-    </div>        
-
-
+    </div>
 
     {{ end }}
+
+    <section class="quick-links-section pt-75 pb-75 mt-75 gray-bg">
+      <div class="container">
+        <div class="row justify-content-center mb-40">
+          <div class="col-xl-8 text-center">
+            <div class="section-title">
+              <h2>Genvägar</h2>
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-lg-3 col-md-6 col-sm-6 mb-25">
+            <a href="/nyttig-information" class="quick-link-card">
+              <div class="quick-link-icon"><i class="lni lni-information"></i></div>
+              <h5>Nyttig information</h5>
+              <p>Praktisk info för boende i området</p>
+            </a>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-6 mb-25">
+            <a href="/samfalligheten" class="quick-link-card">
+              <div class="quick-link-icon"><i class="lni lni-home"></i></div>
+              <h5>Samfälligheten</h5>
+              <p>Om föreningen, stadgar och regler</p>
+            </a>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-6 mb-25">
+            <a href="/protokoll" class="quick-link-card">
+              <div class="quick-link-icon"><i class="lni lni-files"></i></div>
+              <h5>Protokoll</h5>
+              <p>Stämmoprotokoll och beslut</p>
+            </a>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-6 mb-25">
+            <a href="/kontakt" class="quick-link-card">
+              <div class="quick-link-icon"><i class="lni lni-envelope"></i></div>
+              <h5>Kontakt</h5>
+              <p>Nå styrelsen med frågor</p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {{ with .Site.Params.events }}
+    <section class="event-timeline-section pt-75 pb-75">
+      <div class="container">
+        <div class="row justify-content-center mb-40">
+          <div class="col-xl-8 text-center">
+            <div class="section-title">
+              <h2>Årets händelser</h2>
+              <p>Återkommande aktiviteter i Rundeln</p>
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-xl-8 col-lg-10">
+            <div class="timeline">
+              {{ range . }}
+              <div class="timeline-item">
+                <div class="timeline-month">{{ .month }}</div>
+                <div class="timeline-content">
+                  <h5>{{ .title }}</h5>
+                  <p>{{ .description }}</p>
+                </div>
+              </div>
+              {{ end }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    {{ end }}
+
 {{ end }}

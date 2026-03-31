@@ -1,8 +1,20 @@
-<div id="breadcrumbs">
-    <a href="/">Home</a>
-    {{ range (split .RelPermalink "/") }}
-        {{ if gt (len . ) 0 }}
-            / <a href="/{{ . }}">{{ humanize (replace . "posts" "blog") }}</a>
+<nav aria-label="breadcrumb" class="page-breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Hem</a></li>
+    {{ $url := "" }}
+    {{ $parts := split .RelPermalink "/" }}
+    {{ $last := sub (len $parts) 2 }}
+    {{ range $i, $part := $parts }}
+      {{ if gt (len $part) 0 }}
+        {{ $url = printf "%s/%s" $url $part }}
+        {{ if eq $i $last }}
+          <li class="breadcrumb-item active" aria-current="page">{{ $.Title }}</li>
+        {{ else }}
+          {{ with site.GetPage $url }}
+            <li class="breadcrumb-item"><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+          {{ end }}
         {{ end }}
+      {{ end }}
     {{ end }}
-</div>
+  </ol>
+</nav>

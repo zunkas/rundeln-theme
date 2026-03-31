@@ -9,6 +9,9 @@
       <div class="col-xl-12">
         <div class="banner-content text-mask banner-content-wrapper">
           <h2 class="text-light">{{ .title | markdownify }}</h2>
+          {{ with .page }}
+            {{ partial "breadcrumbs" . }}
+          {{ end }}
         </div>
       </div>
     </div>

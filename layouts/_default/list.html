@@ -1,5 +1,5 @@
 {{ define "hero" }}
-    {{ partial "page-banner" (dict "imageUrl" .Params.image "globalImageUrl" .Site.Params.heroimage "title" .Params.title "slogan" .Params.subtitle)}}
+    {{ partial "page-banner" (dict "imageUrl" .Params.image "globalImageUrl" .Site.Params.heroimage "title" .Params.title "slogan" .Params.subtitle "page" .)}}
 {{ end }}
 
 
