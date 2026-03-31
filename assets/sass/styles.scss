@@ -828,6 +828,25 @@ p {
 }
 
 // =====================
+// TAGS & BADGES
+// =====================
+.blog-post-tags .badge,
+.text-secondary .badge {
+    background: $dark;
+    color: $white;
+    font-weight: 500;
+    font-size: 0.8rem;
+    padding: 5px 12px;
+    border-radius: 6px;
+    border: none;
+
+    &:hover {
+        background: lighten($dark, 10%);
+        color: $white;
+    }
+}
+
+// =====================
 // HR
 // =====================
 hr {
