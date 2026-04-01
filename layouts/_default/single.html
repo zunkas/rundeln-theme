@@ -15,7 +15,7 @@
                             <h1 class="">
                                 <a class="" href="{{ .RelPermalink }}">{{ .Title | markdownify }}</a>
                             </h1>
-                            {{ if or (eq .Section "rundeln-runt") (eq .Section "Protokoll") }}
+                            {{ if or (eq .Section "rundeln-runt") (eq .Section "protokoll") }}
                             {{ partial "post-date" . }}
                             <div>Lästid: {{ .ReadingTime }} minuter</div>
                             {{ end }}

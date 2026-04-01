@@ -1,13 +1,13 @@
-<footer class="footer mt-100">
+<footer class="footer mt-100" role="contentinfo">
   <div class="container">
     <div class="footer-content pt-75 pb-40">
       <div class="row">
         <div class="col-lg-4 col-md-6 mb-40">
-          <h5 class="footer-heading">{{ .Site.Params.title | markdownify }}</h5>
+          <p class="footer-heading">{{ .Site.Params.title | markdownify }}</p>
           <p class="footer-about">Samfällighetsförening för boende längs Basgränd i kvarteret Trubaduren. Sedan 1993 förvaltar vi gemensamt våra gårdar, vägar och grönområden.</p>
         </div>
         <div class="col-lg-4 col-md-6 mb-40">
-          <h5 class="footer-heading">Genvägar</h5>
+          <p class="footer-heading">Genvägar</p>
           <ul class="footer-links">
             {{ range .Site.Menus.main }}
             <li><a href="{{ .URL | relLangURL }}">{{ .Name }}</a></li>
@@ -15,11 +15,11 @@
           </ul>
         </div>
         <div class="col-lg-4 col-md-6 mb-40">
-          <h5 class="footer-heading">Följ oss</h5>
+          <p class="footer-heading">Följ oss</p>
           <div class="footer-social-links">
             <ul class="d-flex">
               <li>
-                <a href="{{ .Site.Params.facebookurl }}" title="Facebook" aria-label="Facebook">
+                <a href="{{ .Site.Params.facebookurl }}" title="Facebook" aria-label="Facebook (öppnas i nytt fönster)" target="_blank" rel="noopener noreferrer">
                   <i class="lni lni-facebook-filled"></i>
                 </a>
               </li>

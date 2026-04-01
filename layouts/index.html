@@ -25,7 +25,7 @@
 
     {{ end }}
 
-    <section class="quick-links-section pt-75 pb-75 mt-75 gray-bg">
+    <section class="quick-links-section pt-75 pb-75 mt-75 gray-bg" aria-label="Genvägar">
       <div class="container">
         <div class="row justify-content-center mb-40">
           <div class="col-xl-8 text-center">
@@ -38,28 +38,28 @@
           <div class="col-lg-3 col-md-6 col-sm-6 mb-25">
             <a href="/nyttig-information" class="quick-link-card">
               <div class="quick-link-icon"><i class="lni lni-information"></i></div>
-              <h5>Nyttig information</h5>
+              <h3>Nyttig information</h3>
               <p>Praktisk info för boende i området</p>
             </a>
           </div>
           <div class="col-lg-3 col-md-6 col-sm-6 mb-25">
             <a href="/samfalligheten" class="quick-link-card">
               <div class="quick-link-icon"><i class="lni lni-home"></i></div>
-              <h5>Samfälligheten</h5>
+              <h3>Samfälligheten</h3>
               <p>Om föreningen, stadgar och regler</p>
             </a>
           </div>
           <div class="col-lg-3 col-md-6 col-sm-6 mb-25">
             <a href="/protokoll" class="quick-link-card">
               <div class="quick-link-icon"><i class="lni lni-files"></i></div>
-              <h5>Protokoll</h5>
+              <h3>Protokoll</h3>
               <p>Stämmoprotokoll och beslut</p>
             </a>
           </div>
           <div class="col-lg-3 col-md-6 col-sm-6 mb-25">
             <a href="/kontakt" class="quick-link-card">
               <div class="quick-link-icon"><i class="lni lni-envelope"></i></div>
-              <h5>Kontakt</h5>
+              <h3>Kontakt</h3>
               <p>Nå styrelsen med frågor</p>
             </a>
           </div>
@@ -68,7 +68,7 @@
     </section>
 
     {{ with .Site.Params.events }}
-    <section class="event-timeline-section pt-75 pb-75">
+    <section class="event-timeline-section pt-75 pb-75" aria-label="Årets händelser">
       <div class="container">
         <div class="row justify-content-center mb-40">
           <div class="col-xl-8 text-center">
@@ -85,7 +85,7 @@
               <div class="timeline-item">
                 <div class="timeline-month">{{ .month }}</div>
                 <div class="timeline-content">
-                  <h5>{{ .title }}</h5>
+                  <h3>{{ .title }}</h3>
                   <p>{{ .description }}</p>
                 </div>
               </div>

@@ -9,11 +9,10 @@
     <!-- End Google Tag Manager -->
     {{ end }}
 
-    <title>{{ if .Title }}{{ .Title | markdownify }}-{{ .Site.Params.SEOTitle }}{{ else }}{{ .Site.Params.SEOTitle }}{{ end }}</title>
+    <title>{{ if .Title }}{{ .Title | markdownify }} - {{ .Site.Params.description }}{{ else }}{{ .Site.Params.description }}{{ end }}</title>
 
     <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    
+
     {{ if .Params.title }}
     <meta name="title" content="{{ .Params.title }}" />
     <meta property="og:title" content="{{ .Params.title }}" />
@@ -33,23 +32,40 @@
     <meta property="og:description" content="{{ .Site.Params.description }}" />
     <meta property="twitter:description" content="{{ .Site.Params.description }}" />
     {{ end }}
-        
+
+    <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}" />
+    <meta property="og:url" content="{{ .Permalink }}" />
+    {{ with .Site.Params.heroimage }}
+    <meta property="og:image" content="{{ . | absURL }}" />
+    <meta property="twitter:image" content="{{ . | absURL }}" />
+    {{ end }}
+    <meta name="twitter:card" content="summary_large_image" />
+
     <meta name="dc.relation" content="{{ .Site.BaseURL }}" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
     <link rel="canonical" href="{{ .Permalink }}">
+
+    <link rel="dns-prefetch" href="https://cdn.lineicons.com">
+    <link rel="preconnect" href="https://cdn.lineicons.com" crossorigin>
 
     {{ $options := (dict "targetPath" "css/style.css" "outputStyle" "compressed") }}
     {{ $style := resources.Get "sass/main.scss" | toCSS  $options | minify }}
 
     <link rel="stylesheet" href="{{ $style.RelPermalink }}" media="screen">
-    <link href="https://cdn.lineicons.com/2.0/LineIcons.css" rel="stylesheet">
+    <link href="https://cdn.lineicons.com/2.0/LineIcons.css" rel="stylesheet" integrity="sha384-4TB3FVCJZry/z5d6cdOtaapqG2tUxPhsVSwbLI70hIQ1Ovtrj/v5tPcg09usZYOL" crossorigin="anonymous">
 
-    <!-- 
-        include a favicon for your site if you have it, else omit the line below 
-        Location of favicon can be in mytheme/static/favicon.ico
-    -->
     <link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js" integrity="sha384-dy2tW8xkhLIj8lZR42MCwZhhDb2cCewZiw0uA65CMpdHiJzL+iubx7HzHcCXU2rW" crossorigin="anonymous"></script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Rundelns samfällighetsförening",
+      "url": {{ .Site.BaseURL | jsonify }}
+      {{ with .Site.Params.facebookurl }},"sameAs": [{{ . | jsonify }}]{{ end }}
+    }
+    </script>
 
 </head>

@@ -2,7 +2,7 @@
 
 {{ $pag := $.Paginator }}
 {{ if gt $pag.TotalPages 1 }}
-<div class="pagination">
+<nav class="pagination" aria-label="Sidnavigering">
     <ul class="d-flex justify-content-center align-items-center" style="list-style-type: none;" >
         {{ with $pag.First }}
         <li class="page-item">
@@ -26,7 +26,7 @@
             {{ end }}
             {{ if $showNumber }}
                 <li class="page-item {{ if eq . $pag }}active{{ end }}">
-                    <a class="page-link" href="{{ .URL }}">{{ .PageNumber }}</a>
+                    <a class="page-link" href="{{ .URL }}" {{ if eq . $pag }}aria-current="page"{{ end }}>{{ .PageNumber }}</a>
                 </li>
             {{ else if ($.Scratch.Get "__paginator.shouldEllipse") }}
                 <li class="page-item disabled">
@@ -35,7 +35,7 @@
             {{ end }}
         {{ end }}
         <li class="page-item {{ if not $pag.HasNext }}disabled{{ end }}">
-            <a class="page-link" href="{{ if $pag.HasNext }}{{ $pag.Next.URL }}{{ else }}#{{ end }}" aria-label="Next" {{ if not $pag.HasPrev }}tabindex="-1" aria-disabled="true"{{ end }}><span aria-hidden="true">&raquo;</span></a>
+            <a class="page-link" href="{{ if $pag.HasNext }}{{ $pag.Next.URL }}{{ else }}#{{ end }}" aria-label="Next" {{ if not $pag.HasNext }}tabindex="-1" aria-disabled="true"{{ end }}><span aria-hidden="true">&raquo;</span></a>
         </li>
         {{ with $pag.Last }}
             <li class="page-item">
@@ -43,5 +43,5 @@
             </li>
         {{ end }}
     </ul>
-</div>
+</nav>
 {{ end }}

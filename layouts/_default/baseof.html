@@ -2,10 +2,11 @@
 <html lang="sv">
     {{- partial "head.html" . -}}
     <body>
+        <a href="#main-content" class="skip-to-content">Hoppa till innehåll</a>
         {{ if .Site.Params.GTMKey }}
         <!-- Google Tag Manager (noscript) -->
         <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ .Site.Params.GTMKey }}"
-        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
         <!-- End Google Tag Manager (noscript) -->
         {{ end }}
 
@@ -13,10 +14,10 @@
 
         {{ with .Site.Params.announcement }}
           {{ if .enabled }}
-          <div class="announcement-banner announcement-{{ .type | default "info" }}" id="announcement-banner" style="display:none;">
+          <div class="announcement-banner announcement-{{ .type | default "info" }}" id="announcement-banner" role="alert" style="display:none;">
             <div class="container d-flex align-items-center justify-content-between">
               <span>{{ .message | markdownify }}</span>
-              <button type="button" class="announcement-close" aria-label="Stäng" onclick="dismissAnnouncement()">
+              <button type="button" class="announcement-close" aria-label="Stäng" id="announcement-close-btn">
                 <i class="lni lni-close"></i>
               </button>
             </div>
@@ -27,10 +28,10 @@
               if (!localStorage.getItem(key)) {
                 document.getElementById('announcement-banner').style.display = 'block';
               }
-              window.dismissAnnouncement = function() {
+              document.getElementById('announcement-close-btn').addEventListener('click', function() {
                 document.getElementById('announcement-banner').style.display = 'none';
                 localStorage.setItem(key, '1');
-              };
+              });
             })();
           </script>
           {{ end }}
