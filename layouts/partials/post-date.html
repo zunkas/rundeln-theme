@@ -1,9 +1,9 @@
-{{ $dateFormat := default "Jan 2, 2006" (index .Site.Params "date_format") }}
-
+{{ $months := slice "januari" "februari" "mars" "april" "maj" "juni" "juli" "augusti" "september" "oktober" "november" "december" }}
 {{ $author := .Params.author | default .Site.Params.author }}
 <div class="blog-post-date text-secondary">
     {{ if not .Date.IsZero }}
-        <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format $dateFormat }}</time>
+        {{ $month := index $months (sub .Date.Month 1) }}
+        <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Day }} {{ $month }} {{ .Date.Year }}</time>
     {{ end }}
     {{ if $author }}
         {{ i18n "by" }} <span rel="author">{{ $author }}</span>
