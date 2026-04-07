@@ -3,12 +3,6 @@
     {{- partial "head.html" . -}}
     <body>
         <a href="#main-content" class="skip-to-content">Hoppa till innehåll</a>
-        {{ if .Site.Params.GTMKey }}
-        <!-- Google Tag Manager (noscript) -->
-        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ .Site.Params.GTMKey }}"
-        height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
-        <!-- End Google Tag Manager (noscript) -->
-        {{ end }}
 
         {{- partial "header.html" . -}}
 
@@ -56,5 +50,45 @@
             });
           }
         </script>
+        {{ if .Site.Params.GTMKey }}
+        <div id="cookie-consent-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#2d6a4f;color:#fff;padding:1.5rem 1rem;z-index:9999;">
+            <div class="container d-flex flex-column flex-sm-row align-items-center justify-content-between gap-2">
+                <p class="mb-0" style="font-size:1rem;color:#fff;">Vi använder cookies för att analysera trafiken på webbplatsen. Godkänner du att vi använder cookies?</p>
+                <div class="d-flex gap-2 flex-shrink-0">
+                    <button id="cookie-decline" class="btn btn-outline-light btn-sm">Neka</button>
+                    <button id="cookie-accept" class="btn btn-light btn-sm">Godkänn</button>
+                </div>
+            </div>
+        </div>
+        <script>
+        (function(){
+            var CONSENT_KEY='cookie_consent';
+            var consent=localStorage.getItem(CONSENT_KEY);
+            function loadGTM(){
+                var id=document.querySelector('meta[name="gtm-id"]');
+                if(!id)return;
+                id=id.getAttribute('content');
+                (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+                })(window,document,'script','dataLayer',id);
+            }
+            if(consent==='accepted'){loadGTM();return;}
+            if(consent==='declined')return;
+            var banner=document.getElementById('cookie-consent-banner');
+            banner.style.display='block';
+            document.getElementById('cookie-accept').addEventListener('click',function(){
+                localStorage.setItem(CONSENT_KEY,'accepted');
+                banner.style.display='none';
+                loadGTM();
+            });
+            document.getElementById('cookie-decline').addEventListener('click',function(){
+                localStorage.setItem(CONSENT_KEY,'declined');
+                banner.style.display='none';
+            });
+        })();
+        </script>
+        {{ end }}
     </body>
 </html>
